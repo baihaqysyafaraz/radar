@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
+body {
+  background-color: #0a0f1c;
+  color: #00ffff;
+  font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  padding: 40px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.page-title h2 {
+  font-size: 48px;
+  color: #00eaff;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+
+/* Layout Radar + Kontrol */
+.main-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 80px;
+  flex-wrap: nowrap; /* ⚠️ Gunakan nowrap agar layout tetap sejajar */
+}
+
+/* Radar Kiri */
+.radar-section {
+  text-align: center;
+}
+
+.radar-wrapper {
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, #0d1b2a 0%, #000000 100%);
+  border-top-left-radius: 400px;
+  border-top-right-radius: 400px;
+  border: 2px solid #00ffcc;
+  box-shadow: 0 0 20px #00ffff44, inset 0 0 30px #00ffff22;
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+/* Canvas */
+canvas {
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+}
+
+/* Kontrol Kanan */
+.control-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  margin-top: 30px;
+  min-width: 300px; /* ✅ TAMBAHKAN INI */
+}
+
+/* Tombol Futuristik */
+.radar-button {
+  padding: 16px 40px;
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  border-radius: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00ffff;
+  box-shadow: 0 0 15px #00ffff55;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.radar-button:hover {
+  background-color: #00ffff;
+  color: #0a0f1c;
+  box-shadow: 0 0 30px #00ffffaa;
+}
+
+/* Riwayat */
+.history-box {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid #00ffff44;
+  padding: 20px;
+  border-radius: 14px;
+  width: 280px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffff33;
+  visibility: hidden;     /* ✅ GANTI dari display: none */
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Saat aktif */
+.history-box.show {
+  visibility: visible;
+  opacity: 1;
+  max-height: 300px;
+}
+
+.history-box h3 {
+  font-size: 18px;
+  color: #00ffff;
+  margin-bottom: 16px;
+  margin-top: 10px;
+}
+
+.history-box p {
+  font-size: 16px;
+  color: white;
+  line-height: 1.5;
+}

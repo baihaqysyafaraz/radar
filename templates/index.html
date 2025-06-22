@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radar Deteksi Objek</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="page-title">
+    <h2>RADAR DETEKSI OBJEK</h2>
+  </div>
+  <div class="main-layout">
+    <!-- KIRI -->
+    <div class="radar-section">
+      <div class="radar-wrapper">
+        <canvas id="radar" width="800" height="400"></canvas>
+      </div>
+    </div>
+
+    <!-- KANAN -->
+    <div class="control-section">
+      <button class="radar-button" onclick="toggleRadar()" id="radarButton">Matikan Radar</button>
+
+      <button class="radar-button" onclick="toggleHistory()">Lihat Riwayat</button>
+
+      <div class="history-box" id="historyBox">
+        <h3>Riwayat Buzzer</h3>
+        <p id="buzzer-info">Belum ada data</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/radar.js"></script>
+  <script>
+    let radarOn = true;
+
+    async function toggleRadar() {
+      radarOn = !radarOn;
+      await fetch('/set_radar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ on: radarOn })
+      });
+
+      document.getElementById("radarButton").innerText = radarOn ? "Matikan Radar" : "Nyalakan Radar";
+    }
+
+    async function getRadarStatus() {
+      const res = await fetch('/get_radar');
+      const data = await res.json();
+      radarOn = data.on;
+      document.getElementById("radarButton").innerText = radarOn ? "Matikan Radar" : "Nyalakan Radar";
+    }
+
+    function toggleHistory() {
+      const box = document.getElementById('historyBox');
+      box.classList.toggle('show');
+      if (box.classList.contains('show')) {
+        updateHistory();
+      }
+    }
+
+
+    async function updateHistory() {
+      try {
+        const res = await fetch('/get_buzzer_history');
+        const data = await res.json();
+        if (data.time) {
+          document.getElementById('buzzer-info').innerText = `Buzzer terakhir menyala pada ${data.time}, jarak objek: ${data.distance} cm`;
+        } else {
+          document.getElementById('buzzer-info').innerText = `Belum ada data`;
+        }
+      } catch (e) {
+        document.getElementById('buzzer-info').innerText = "Gagal mengambil riwayat";
+      }
+    }
+
+    getRadarStatus();
+  </script>
+</body>
+</html>
