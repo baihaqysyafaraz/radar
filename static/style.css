@@ -52,6 +52,8 @@ body {
 }
 /* Canvas */
 canvas {
+  width: 100%;        /* ✅ Ikuti lebar kontainer */
+  height: auto;
   display: block;
   margin: 0 auto;
   background: transparent;
