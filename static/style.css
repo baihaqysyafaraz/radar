@@ -124,3 +124,22 @@ canvas {
   color: white;
   line-height: 1.5;
 }
+/* Mobile style override */
+@media (max-width: 767px) {
+  .main-layout {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .radar-wrapper {
+    width: 100%;
+    max-width: 95%;
+    height: auto;
+  }
+
+  .control-section {
+    width: 90%;
+    align-items: center;
+  }
+}
