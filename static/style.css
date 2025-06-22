@@ -37,8 +37,10 @@ body {
 }
 
 .radar-wrapper {
-  width: 800px;
-  height: 400px;
+  width: 100%;
+  max-width: 800px;         /* ✅ Maksimum lebar */
+  height: auto;
+  aspect-ratio: 2 / 1;      /* ✅ Tetap proporsional */
   background: radial-gradient(ellipse at center, #0d1b2a 0%, #000000 100%);
   border-top-left-radius: 400px;
   border-top-right-radius: 400px;
@@ -46,8 +48,8 @@ body {
   box-shadow: 0 0 20px #00ffff44, inset 0 0 30px #00ffff22;
   overflow: hidden;
   margin-top: 50px;
+  position: relative;
 }
-
 /* Canvas */
 canvas {
   display: block;
