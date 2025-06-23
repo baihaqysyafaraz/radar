@@ -9,7 +9,7 @@
 
   const char* ssid = "ujang";
   const char* password = "nanananang";
-  const char* serverUrl = "http://192.168.46.74:5000/post_data";
+  const char* serverUrl = "http://192.168.134.74:5000/post_data";
 
   Servo radarServo;
 
@@ -124,7 +124,7 @@
     if (WiFi.status() == WL_CONNECTED) {
       WiFiClient client;
       HTTPClient http;
-      http.begin(client, "http://192.168.46.74:5000/get_radar");
+      http.begin(client, "http://192.168.134.74:5000/get_radar");
       int httpCode = http.GET();
 
       if (httpCode > 0) {
